@@ -108,7 +108,7 @@ int VectorSearch(const vector *v, const void *key, VectorCompareFunction searchF
     assert(searchFn != NULL);
     if(isSorted) {
         void *bres = bsearch(key, v->elems, VectorLength(v), v->elemSize, searchFn);
-        if(bres == NULL) return -1;
+        if(bres == NULL) return kNotFound;
         return ((char *) bres - (char *) v->elems) / v->elemSize;
     } else {
         for(i = startIndex; i < VectorLength(v); i++) {
@@ -116,6 +116,6 @@ int VectorSearch(const vector *v, const void *key, VectorCompareFunction searchF
                 return i;
             }
         }
-        return -1;
+        return kNotFound;
     }
 } 
